@@ -40,7 +40,7 @@ object DistributionFunction {
   def Exponential(s: Int, r: Int, x: Int) = Math
     .round(
       s * (math.pow(math.E, 1 - (5 * (x.toDouble - 1) / r.toDouble)) - math
-        .pow(math.E, -(math.pow(x.toDouble, 5) / r.toDouble)))
+        .pow(math.E, -5 * x.toDouble / r.toDouble))
     )
     .toInt
 
@@ -72,8 +72,9 @@ object DistributionFunction {
     */
   def InvertedExponential(s: Int, r: Int, x: Int) = Math
     .round(
-      s * (math.pow(math.E, 1 - (5 * (r - x.toDouble) / r.toDouble)) - math
-        .pow(math.E, -(math.pow((r - x.toDouble + 1), 5) / r.toDouble)))
+      s * (math
+        .pow(math.E, 1 - (5 * (r.toDouble - x.toDouble) / r.toDouble)) - math
+        .pow(math.E, -5 * (r.toDouble - x.toDouble + 1) / r.toDouble))
     )
     .toInt
 
